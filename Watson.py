@@ -1,9 +1,34 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 import subprocess
 import threading
 import os
 import webbrowser
+
+class SherlockPathPopup:
+    def __init__(self, parent):
+        self.parent = parent
+        self.popup = tk.Toplevel(parent.root)
+        self.popup.title("Sherlock Path")
+        
+        self.path_label = tk.Label(self.popup, text="Paste Sherlock Path:")
+        self.path_label.pack(pady=5)
+        
+        self.path_entry = tk.Entry(self.popup, width=50)
+        self.path_entry.pack(pady=5)
+        
+        self.ok_button = tk.Button(self.popup, text="OK", command=self.set_sherlock_path)
+        self.ok_button.pack(pady=5)
+        
+    def set_sherlock_path(self):
+        path = self.path_entry.get().strip()
+        if path:
+            self.parent.save_sherlock_path(path)
+            self.popup.destroy()
+            self.parent.search_usernames()  # Start the search after setting the path
+        else:
+            messagebox.showerror("Error", "Please enter a valid path.")
+
 
 class SherlockGUI:
     def __init__(self, root):
@@ -11,6 +36,7 @@ class SherlockGUI:
         self.root.title("Watson Username Search")
         self.create_widgets()
         self.set_output_folder()
+        self.load_sherlock_path()
 
     def create_widgets(self):
         # Info label with hyperlink
@@ -60,7 +86,24 @@ class SherlockGUI:
     def open_url(self, url):
         webbrowser.open_new(url)
 
+    def load_sherlock_path(self):
+        path_file = "PATH.watson"
+        if os.path.exists(path_file):
+            with open(path_file, "r") as f:
+                self.sherlock_path = f.read().strip()
+        else:
+            self.sherlock_path = None
+
+    def save_sherlock_path(self, path):
+        path_file = "PATH.watson"
+        with open(path_file, "w") as f:
+            f.write(path)
+
     def search_usernames(self):
+        if not self.sherlock_path:
+            SherlockPathPopup(self)
+            return
+
         usernames = self.usernames_entry.get().split(',')
         nsfw = self.nsfw_var.get()
 
@@ -68,14 +111,11 @@ class SherlockGUI:
             messagebox.showerror("Error", "Please enter at least one username.")
             return
 
-        # Use the full path to the sherlock script
-        sherlock_path = "YOUR_SHERLOCK_PATH"
-        cmd = [sherlock_path] + usernames
+        cmd = [self.sherlock_path] + usernames
         if nsfw:
             cmd.append("--nsfw")
         cmd.extend(["--folderoutput", self.output_folder])
 
-        # Run Sherlock in a separate thread
         threading.Thread(target=self.run_sherlock, args=(cmd,)).start()
 
     def run_sherlock(self, cmd):
