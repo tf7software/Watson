@@ -11,9 +11,8 @@ Type ```pip3 install sherlock-project``` you can change out ```pip3``` for ```pi
 
 Type ```which sherlock```, press ENTER, then copy the output, ours was ```/Library/Frameworks/Python.framework/Versions/3.12/bin/sherlock```
 
-Go to Watson.py, in line 72, edit ```YOUR_SHERLOCK_PATH``` with your path copied earlier (eg. ```/Library/Frameworks/Python.framework/Versions/3.12/bin/sherlock```)
+Run Watson.py, when "Search" is hit the first time, it will ask for the Sherlock PATH, Paste from earlier (eg. ```/Library/Frameworks/Python.framework/Versions/3.12/bin/sherlock```). It will not need this again as it is saved in a PATH.watson file, which can be edited in TextEdit if needed.
 
-Run Watson.py
 
 Enjoy!!
 
