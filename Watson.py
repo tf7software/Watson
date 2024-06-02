@@ -126,7 +126,7 @@ class SherlockGUI:
         for line in process.stdout:
             if "found:" in line:
                 found_count += 1
-            self.progress_label.config(text=f"Found {found_count} sites with the username(s)")
+            
             self.output_text.insert(tk.END, line)
             self.output_text.see(tk.END)
 
