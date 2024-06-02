@@ -1,6 +1,6 @@
 https://i.im.ge/2024/06/02/K02OSz.beeble.png
 
-###The Trusty Helper for [Sherlock](https://github.com/sherlock-project/sherlock)!
+## The Trusty Helper for [Sherlock](https://github.com/sherlock-project/sherlock)!
 
 To use:
 
