@@ -1,4 +1,5 @@
-https://i.im.ge/2024/06/02/K02OSz.beeble.png
+![WatsonLogo]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/tf7software/Watson/blob/a3b5bea444e29ea301368708374f04803b78b21d/watsonlogo.png))
+
 # Watson
 ## The Trusty Helper for [Sherlock](https://github.com/sherlock-project/sherlock)!
 
