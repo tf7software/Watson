@@ -1,4 +1,4 @@
-![WatsonLogo]([https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/tf7software/Watson/blob/a3b5bea444e29ea301368708374f04803b78b21d/watsonlogo.png))
+![WatsonLogo](https://github.com/tf7software/Watson/blob/dcfa74075aa21f8e57c3d26bb0939fac4a2735d8/watsonlogo.png)
 
 # Watson
 ## The Trusty Helper for [Sherlock](https://github.com/sherlock-project/sherlock)!
